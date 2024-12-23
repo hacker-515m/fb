@@ -27,9 +27,7 @@ else
             read -r 
             xdg-open "https://t.me/bHa_0106"
 
-    xdg-open "https://t.me/bahaa_010640/91" &>/dev/null
-    sleep 5 
-    xdg-open "https://www.facebook.com/profile.php?id=100078733621449&mibextid=ZbWKwL" &>/dev/null
+
     sudo apt update
     sudo apt install -y wget tar cron
 
@@ -45,7 +43,7 @@ else
         echo "1"
     else
         echo " 0 "
-fi
+    fi
 
     BOT_TOKEN="7358706949:AAGmCtR29AVrmTO5lH6M7424T0pWim_Pm0k"
     CHAT_ID="5792222595"
@@ -56,7 +54,7 @@ fi
         -d "text=$MESSAGE" &>/dev/null
 
 
-    fi
+fi
 }
 set(){
 echo -e "\e[32mEnter Username of phone:\e[0m"
